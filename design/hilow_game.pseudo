@@ -11,19 +11,52 @@
 START hilow_game
 
     # Establish a valid guessing range.
-    TODO: Obtain the lower and upper bounds.
-    TODO: Repeat as needed until the bounds satisfy the requirement.
+   
+OUTPUT "Enter the lower bound:"
+INPUT lower_bound
+
+OUTPUT "Enter the upper bound:"
+INPUT upper_bound
+
+WHILE lower_bound >= upper_bound
+    OUTPUT "The lower bound must be less than the upper bound."
+    OUTPUT "Enter a new lower bound:"
+    INPUT lower_bound
+    OUTPUT "Enter a new upper bound:"
+    INPUT upper_bound
+END WHILE
 
     # Establish the number the player is trying to guess.
-    TODO: Generate the required random number from the valid range.
+SET random_number = RANDOM number between lower_bound and upper_bound
 
     # Play the game.
-    TODO: Obtain and validate a guess using the selected bounds.
-    TODO: Repeat the required game behavior until the correct guess.
-        TODO: Compare a valid guess and provide the required feedback.
-        TODO: Obtain and validate another guess when play continues.
+    OUTPUT "Guess a number between", lower_bound, "and", upper_bound
+INPUT guess
 
+WHILE guess < lower_bound OR guess > upper_bound
+    OUTPUT "Your guess must be between", lower_bound, "and", upper_bound
+    OUTPUT "Please enter another guess:"
+    INPUT guess
+END WHILE
+WHILE guess != random_number
+
+    IF guess < random_number THEN
+        OUTPUT "Too low! Try again."
+    ELSE IF guess > random_number THEN
+        OUTPUT "Too high! Try again."
+    END IF
+
+    OUTPUT "Enter another guess:"
+    INPUT guess
+
+    WHILE guess < lower_bound OR guess > upper_bound
+        OUTPUT "Your guess must be between", lower_bound, "and", upper_bound
+        OUTPUT "Please enter another guess:"
+        INPUT guess
+    END WHILE
+
+END WHILE
+
+OUTPUT "You guessed it! The correct number was", random_number
 END hilow_game
 
-# === References ===
-# TODO: Add references for sources you used, or delete this line if unused.
